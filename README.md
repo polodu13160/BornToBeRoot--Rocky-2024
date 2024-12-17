@@ -124,6 +124,16 @@ Pour obtenir ce rendu final :
 
 ![](media/image_4680524392288845109.png)
 
+### Create Root User
+
+13. Create a root user and set a password.
+
+![Create Root User](media/image_1640610112975793303.png)
+
+14. Begin the installation process. The VM will restart and prompt for the encryption password.
+
+![Installation](media/image_1540252658794216823.png)
+
 ### Configuration SSH
 
 1. Installez vim :
@@ -191,9 +201,30 @@ Cette commande ouvre le fichier de configuration de l'authentification des mots 
 
 ![](media/image_6267659216919912645.png)
 
+Voici une explication plus propre des paramètres de configuration des mots de passe :
+
+- `minlen` : Définit la longueur minimale du mot de passe.
+- `retry` : Nombre maximal de tentatives autorisées pour entrer un mot de passe.
+- `difok` : Nombre minimal de caractères différents par rapport à l'ancien mot de passe.
+- `dcredit`, `lcredit`, `ucredit` : Exigent que le mot de passe contienne au moins un chiffre, une lettre minuscule et une lettre majuscule.
+- `maxrepeat` : Nombre maximal de répétitions consécutives d'un même caractère.
+
+En configurant ces paramètres, vous pouvez définir des règles de mot de passe strictes pour les utilisateurs. Par exemple, les utilisateurs non-root devront changer leur mot de passe pour qu'il soit différent de l'ancien d'au moins 7 caractères, tandis que l'utilisateur root pourra réutiliser le même mot de passe.
+
 2. Modifiez les paramètres dans `/etc/login.defs` :
 
 ![](media/image_5615349663840886524.png)
+
+Recherchez et modifiez les lignes suivantes pour qu'elles correspondent aux valeurs requises :
+
+```sh
+PASS_MAX_DAYS   30
+PASS_MIN_DAYS   2
+PASS_WARN_AGE   7
+```
+
+Ces paramètres définissent la durée maximale de validité d'un mot de passe (30 jours), le nombre minimal de jours entre les changements de mot de passe (2 jours) et le nombre de jours avant l'expiration du mot de passe où l'utilisateur sera averti (7 jours).
+
 
 3. Appliquez les modifications pour l'utilisateur root :
 
