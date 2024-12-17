@@ -1,6 +1,4 @@
-
 # Born to Be Root Rookie 42
-
 
 ### DEFINITIONS 
 ### SELinux
@@ -134,11 +132,15 @@ Pour obtenir ce rendu final :
 dnf install vim
 ```
 
+Cette commande utilise DNF pour installer l'éditeur de texte Vim.
+
 2. Modifiez le fichier de configuration SSH :
 
 ```sh
 vim /etc/ssh/sshd_config
 ```
+
+Cette commande ouvre le fichier de configuration SSH avec Vim.
 
 ![](media/image_4785824524403294438.png)
 
@@ -150,11 +152,15 @@ Décommentez "Port" et modifiez-le en port 4242. Décommentez "PermitRootLogin" 
 sudo dnf install policycoreutils-python-utils
 ```
 
+Cette commande installe les utilitaires nécessaires pour gérer les politiques SELinux.
+
 4. Ajoutez une nouvelle règle sur le port 4242 :
 
 ```sh
 semanage port -a -t ssh_port_t -p tcp 4242
 ```
+
+Cette commande ajoute une règle SELinux pour permettre l'utilisation du port 4242 pour SSH.
 
 5. Acceptez le port sur le firewall :
 
@@ -163,11 +169,15 @@ firewall-cmd --zone=public --add-port=4242/tcp --permanent
 firewall-cmd --reload
 ```
 
+Ces commandes ajoutent une règle de pare-feu pour accepter les connexions sur le port 4242 et rechargent la configuration du pare-feu.
+
 6. Redémarrez le service SSH :
 
 ```sh
 systemctl restart sshd
 ```
+
+Cette commande redémarre le service SSH pour appliquer les modifications.
 
 ### Configuration initiale (Primary setup)
 
@@ -176,6 +186,8 @@ systemctl restart sshd
 ```sh
 vim /etc/pam.d/password-auth
 ```
+
+Cette commande ouvre le fichier de configuration de l'authentification des mots de passe avec Vim.
 
 ![](media/image_6267659216919912645.png)
 
@@ -191,6 +203,8 @@ passwd root
 chage -l root
 ```
 
+Ces commandes modifient les paramètres de gestion des mots de passe pour l'utilisateur root, définissent un nouveau mot de passe et affichent les informations de changement de mot de passe.
+
 ![](media/image_6397749315299856134.png)
 
 4. Changer le hostname :
@@ -199,6 +213,8 @@ chage -l root
 hostname 'lenomquetuveux'
 vim /etc/hostname
 ```
+
+Ces commandes changent le nom d'hôte de la machine.
 
 ![](media/image_-4278646014100211598.png)
 
@@ -211,11 +227,15 @@ groupadd user42
 usermod -a -G user42 pde-petr
 ```
 
+Ces commandes créent un nouvel utilisateur, définissent son mot de passe, créent un nouveau groupe et ajoutent l'utilisateur au groupe.
+
 6. Renommer le groupe sudo :
 
 ```sh
 groupmod -n sudo wheel
 ```
+
+Cette commande renomme le groupe `wheel` en `sudo`.
 
 7. Afficher les utilisateurs et groupes
 ```sh
@@ -223,6 +243,8 @@ getent passwd
 getent group
 getent group user42
 ```
+
+Ces commandes affichent les informations sur les utilisateurs et les groupes du système.
 
 ### Explications des commandes
 
@@ -238,6 +260,7 @@ getent group user42
 visudo
 ```
 
+Cette commande ouvre le fichier de configuration sudoers avec l'éditeur visudo.
 
 ```sh
 Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
@@ -259,16 +282,6 @@ Defaults badpass_message="Mot de passe incorrect, merci de réessayer. Si vous a
 - `iolog_dir` : Spécifie le répertoire de journalisation des entrées/sorties.
 - `badpass_message` : Message affiché en cas de mot de passe incorrect.
 
-```sh
-Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-%sudo ALL=!/bin/su, !/bin/bash, !/bin/sh
-Defaults requiretty
-Defaults passwd_tries=3
-Defaults log_input, log_output
-Defaults iolog_dir = /var/log/sudo/
-Defaults badpass_message="Mot de passe incorrect, merci de réessayer. Si vous avez oublié le mot de passe, contactez votre administrateur."
-```
-
 ### Monitoring
 
 1. Mettez à jour les dépendances de package :
@@ -278,24 +291,31 @@ dnf update
 systemctl enable crond
 ```
 
+Ces commandes mettent à jour les paquets du système et activent le service cron pour planifier des tâches.
+
 2. Configurez crontab pour exécuter le script de monitoring :
 
 ```sh
 crontab -e
 ```
 
+Cette commande ouvre l'éditeur de crontab pour l'utilisateur actuel.
+
 Ajoutez :
 
 ```sh
 */10 * * * * /root/monitoring.sh
-@reboot /path/to/monitoring.sh
 ```
+
+Ces lignes ajoutent des tâches planifiées pour exécuter le script de monitoring toutes les 10 minutes et au démarrage du système.
 
 Assurez-vous que le script est exécutable :
 
 ```sh
 chmod +x /path/to/monitoring.sh
 ```
+
+Cette commande rend le script exécutable.
 
 ### Interdire la connexion SSH en root
 
@@ -305,6 +325,8 @@ chmod +x /path/to/monitoring.sh
 vim /etc/ssh/sshd_config
 ```
 
+Cette commande ouvre le fichier de configuration SSH avec Vim.
+
 ![](media/image_-8771924523911054731.png)
 
 Mettez "no" sur "PermitRootLogin". Enregistrez et redémarrez le service SSH :
@@ -312,6 +334,8 @@ Mettez "no" sur "PermitRootLogin". Enregistrez et redémarrez le service SSH :
 ```sh
 systemctl restart sshd
 ```
+
+Cette commande redémarre le service SSH pour appliquer les modifications.
 
 ### Tester les commandes et régler les problèmes
 
@@ -321,6 +345,8 @@ systemctl restart sshd
 ss -tunlp
 ```
 
+Cette commande affiche les ports ouverts et les services associés.
+
 2. Fermez le port 323 si ouvert :
 
 ```sh
@@ -328,6 +354,8 @@ sudo dnf install lsof
 sudo lsof -i :323
 sudo dnf remove chrony
 ```
+
+Ces commandes installent lsof, vérifient les services utilisant le port 323 et suppriment le service chrony si nécessaire.
 
 3. Fermez les services inutiles sur le firewall :
 
@@ -337,8 +365,6 @@ sudo firewall-cmd --permanent --remove-service=dhcpv6-client
 sudo firewall-cmd --reload
 ```
 
+Ces commandes suppriment les services inutiles du pare-feu et rechargent la configuration du pare-feu.
+
 Pour plus de détails pour les bonus, consultez ce [GitHub](https://github.com/AGolz/Born2beRoot?tab=readme-ov-file).
-
-
-
-
