@@ -15,9 +15,11 @@ SSH (Secure Shell) est un protocole réseau cryptographique utilisé pour sécur
 
 DNF (Dandified YUM) est le gestionnaire de paquets de la distribution Linux Fedora et de ses dérivés, comme Rocky Linux. Il permet d'installer, mettre à jour et supprimer des paquets logiciels. DNF résout automatiquement les dépendances des paquets et gère les dépôts de logiciels.
 
+### SEMANAGE
 
-
-
+Semanage est une commande utilisée pour gérer les politiques de sécurité SELinux. Elle permet de modifier les contextes de sécurité, les ports, les interfaces et les utilisateurs définis par SELinux.
+ 
+ 
 ### \*\*I - Installation\*\*
 
 ## I - Installation
