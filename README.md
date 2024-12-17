@@ -19,8 +19,6 @@ DNF (Dandified YUM) est le gestionnaire de paquets de la distribution Linux Fedo
 
 Semanage est une commande utilisée pour gérer les politiques de sécurité SELinux. Elle permet de modifier les contextes de sécurité, les ports, les interfaces et les utilisateurs définis par SELinux.
  
- 
-### \*\*I - Installation\*\*
 
 ## I - Installation
 
