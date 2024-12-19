@@ -801,7 +801,7 @@ sudo firewall-cmd --reload
 Ces commandes suppriment les services inutiles du pare-feu et rechargent la configuration du pare-feu.
 
 
-### Commandes à connaitre
+### Commandes à connaitre en plus
 
 - Ouvrir un port :
 ```sh
