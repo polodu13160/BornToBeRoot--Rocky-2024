@@ -210,6 +210,7 @@ Voici une explication plus propre des paramètres de configuration des mots de p
 - `difok` : Nombre minimal de caractères différents par rapport à l'ancien mot de passe.
 - `dcredit`, `lcredit`, `ucredit` : Exigent que le mot de passe contienne au moins un chiffre, une lettre minuscule et une lettre majuscule.
 - `maxrepeat` : Nombre maximal de répétitions consécutives d'un même caractère.
+- `enforce_for-root` : force la politique de mot de passe en root et en sudo .
 
 En configurant ces paramètres, vous pouvez définir des règles de mot de passe strictes pour les utilisateurs. Par exemple, les utilisateurs non-root devront changer leur mot de passe pour qu'il soit différent de l'ancien d'au moins 7 caractères, tandis que l'utilisateur root pourra réutiliser le même mot de passe.
 
