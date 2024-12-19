@@ -800,4 +800,34 @@ sudo firewall-cmd --reload
 
 Ces commandes suppriment les services inutiles du pare-feu et rechargent la configuration du pare-feu.
 
+
+### Commandes à connaitre
+
+- Ouvrir un port :
+```sh
+firewall-cmd --zone=public --add-port=PORT_NUMBER/tcp --permanent
+```
+
+- Actualiser les ports :
+```sh
+firewall-cmd --reload
+```
+
+- Supprimer un port :
+```sh
+firewall-cmd --zone=public --remove-port=PORT_NUMBER/tcp --permanent
+```
+
+- Différence entre `useradd` et `adduser` :
+    - `useradd` : Commande bas niveau pour ajouter un utilisateur. Nécessite de spécifier manuellement les options.
+    - `adduser` : Commande plus conviviale (disponible sur certaines distributions) qui utilise `useradd` en arrière-plan et fournit une interface interactive.
+
+- Crontab pour l'utilisateur root :
+```sh
+crontab -e -u root
+```
+Cette commande ouvre l'éditeur de crontab pour l'utilisateur root, permettant de planifier des tâches spécifiques à cet utilisateur.
+
+
+
 Pour plus de détails pour les bonus, consultez ce [GitHub](https://github.com/AGolz/Born2beRoot?tab=readme-ov-file).
