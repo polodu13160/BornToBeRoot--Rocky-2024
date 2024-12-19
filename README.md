@@ -194,12 +194,12 @@ Cette commande redémarre le service SSH pour appliquer les modifications.
 1. Gestion de la politique des mots de passe :
 
 ```sh
-vim /etc/pam.d/password-auth
+vim /etc/security/pwquality.conf
 ```
 
-Cette commande ouvre le fichier de configuration de l'authentification des mots de passe avec Vim.
+Cette commande ouvre le fichier de configuration de l'authentification des mots de passe avec Vim, et modifier comme dans la photo ci dessous (juste décommenter et modifier) : 
 
-![](media/image_6267659216919912645.png)
+![](media/imagenew.png)
 
 Voici une explication plus propre des paramètres de configuration des mots de passe :
 
@@ -291,11 +291,11 @@ Ces commandes affichent les informations sur les utilisateurs et les groupes du 
 visudo
 ```
 
-Cette commande ouvre le fichier de configuration sudoers avec l'éditeur visudo.
+Cette commande ouvre le fichier de configuration sudoers avec l'éditeur visudo. et rajouter :
 
 ```sh
 Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
-%sudo ALL=!/bin/su, !/bin/bash, !/bin/sh
+%sudo ALL=!/bin/su, !/bin/bash, !/bin/sh , !/bin/passwd
 Defaults requiretty
 Defaults passwd_tries=3
 Defaults log_input, log_output
@@ -306,7 +306,7 @@ Defaults badpass_message="Mot de passe incorrect, merci de réessayer. Si vous a
 ### Explication des paramètres
 
 - `secure_path` : Définit les chemins sécurisés pour les commandes sudo.
-- `%sudo ALL=!/bin/su, !/bin/bash, !/bin/sh` : Interdit aux utilisateurs du groupe sudo d'utiliser les commandes su, bash et sh.
+- `%sudo ALL=!/bin/su, !/bin/bash, !/bin/sh, !/bin/passwd` : Interdit aux utilisateurs du groupe sudo d'utiliser les commandes su, bash et sh et passwd avec la commande sudo.
 - `requiretty` : Nécessite une session TTY pour exécuter sudo.
 - `passwd_tries` : Limite le nombre de tentatives de mot de passe à 3.
 - `log_input, log_output` : Active la journalisation des entrées et sorties des commandes sudo.
