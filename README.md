@@ -726,6 +726,8 @@ systemctl enable crond
 
 Ces commandes mettent à jour les paquets du système et activent le service cron pour planifier des tâches.
 
+Rqjoouter le fichier monitoring présent sur ce github, dans un dossier comme par exemple /root
+
 2. Configurez crontab pour exécuter le script de monitoring :
 
 ```sh
@@ -739,7 +741,7 @@ Ajoutez :
 ```sh
 */10 * * * * /root/monitoring.sh
 ```
-
+/root/ est l'emplacement du fichier monitoring 
 Ces lignes ajoutent des tâches planifiées pour exécuter le script de monitoring toutes les 10 minutes et au démarrage du système.
 
 Assurez-vous que le script est exécutable :
@@ -747,7 +749,7 @@ Assurez-vous que le script est exécutable :
 ```sh
 chmod +x /path/to/monitoring.sh
 ```
-
+modifier bien le chemin.
 Cette commande rend le script exécutable.
 
 ### Interdire la connexion SSH en root
