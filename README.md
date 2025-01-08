@@ -822,7 +822,7 @@ firewall-cmd --zone=public --remove-port=PORT_NUMBER/tcp --permanent
 
 - Différence entre `useradd` et `adduser` :
     - `useradd` : Commande bas niveau pour ajouter un utilisateur. Nécessite de spécifier manuellement les options.
-    - `adduser` : Commande plus conviviale (disponible sur certaines distributions) qui utilise `useradd` en arrière-plan et fournit une interface interactive.
+    - `adduser` : Commande plus conviviale (disponible sur certaines distributions) qui utilise `useradd` en arrière-plan et fournit une interface interactive, créer aussi un dossier home pour l'utilisateur, prioriser cette commande.
 
 - Crontab pour l'utilisateur root :
 ```sh
