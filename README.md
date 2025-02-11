@@ -1,4 +1,4 @@
-# Born to Be Root Rookie 42 <a href="https://github.com/polodu13160">
+# Born to Be Root Rookie  <a href="https://github.com/polodu13160">
   <img src="./media/pdp.png" alt="Profile Picture" style="width:50px;height:50px;border-radius:50%;">
 </a>
 
